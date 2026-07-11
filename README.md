@@ -3,6 +3,8 @@
 **AICTE 2026 — IBM SkillsBuild University Engagement**
 **Problem Statement No. 16 — Recipe Preparation Agent**
 
+🔗 **Live Demo:** [recipe-preparation-agent.streamlit.app](https://recipe-preparation-agent-5ehuam9lmnoodywtappfhkc.streamlit.app)
+
 A RAG-based AI system that helps users (students, hostlers, and everyday home
 cooks) cook meals using only the ingredients they have on hand. Built on
 **IBM watsonx Orchestrate** (IBM Cloud Lite services), with a curated
