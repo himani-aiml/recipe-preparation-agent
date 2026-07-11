@@ -1,0 +1,877 @@
+[
+  {
+    "name": "Vegetable Pad Thai",
+    "cuisine": "Thai",
+    "diet": "Vegetarian",
+    "servings": 1,
+    "prepTime": "20 mins",
+    "equipment": "Pan / Wok (or flat tawa)",
+    "ingredients": [
+      "150g flat rice noodles",
+      "1 cup mixed vegetables (carrot, cabbage, beans) - chopped",
+      "100g tofu, cubed",
+      "2 tbsp soy sauce",
+      "1 tbsp tamarind paste (or 1 tsp lemon juice + 1 tsp jaggery)",
+      "1 tsp red chili flakes",
+      "2 cloves garlic, chopped",
+      "2 tbsp crushed peanuts",
+      "1 tbsp oil",
+      "Spring onion and lime for garnish"
+    ],
+    "substitutions": [
+      "No rice noodles? Use any flat noodles or even broken spaghetti",
+      "No tamarind paste? Use lemon juice + a pinch of jaggery/sugar",
+      "No tofu? Use paneer cubes"
+    ],
+    "steps": [
+      "Soak rice noodles in warm water for 10 mins until soft, then drain",
+      "Heat oil in pan, saute garlic till fragrant",
+      "Add tofu cubes, fry until light golden",
+      "Add vegetables, stir-fry on high flame for 2-3 mins",
+      "Add soaked noodles, soy sauce, tamarind paste, and chili flakes",
+      "Toss everything together for 3-4 mins until noodles are evenly coated",
+      "Garnish with crushed peanuts, spring onion, and a lime wedge"
+    ],
+    "tips": "Keep flame high while stir-frying to avoid soggy noodles - this is the biggest mistake beginners make."
+  },
+  {
+    "name": "Tom Yum Soup (Vegetarian)",
+    "cuisine": "Thai",
+    "diet": "Vegetarian",
+    "servings": 1,
+    "prepTime": "15 mins",
+    "equipment": "Pot / Saucepan",
+    "ingredients": [
+      "2 cups vegetable stock or water",
+      "100g mushrooms, sliced",
+      "1 tomato, quartered",
+      "2 tbsp lemon juice",
+      "1 tbsp chili paste (or red chili flakes)",
+      "1 inch ginger, sliced",
+      "2 cloves garlic, crushed",
+      "1 tsp soy sauce",
+      "Coriander leaves for garnish"
+    ],
+    "substitutions": [
+      "No lemongrass? Use extra ginger + lemon zest",
+      "No chili paste? Use dry red chilies + a bit of tomato ketchup"
+    ],
+    "steps": [
+      "Boil stock/water with ginger and garlic for 5 mins",
+      "Add mushrooms and tomato, cook for 3-4 mins",
+      "Add chili paste and soy sauce, stir well",
+      "Turn off heat, add lemon juice (adding it while boiling makes it bitter)",
+      "Garnish with coriander and serve hot"
+    ],
+    "tips": "Always add lemon juice at the end after removing from heat to keep the soup's flavor bright."
+  },
+  {
+    "name": "Thai Green Curry with Vegetables",
+    "cuisine": "Thai",
+    "diet": "Vegetarian",
+    "servings": 2,
+    "prepTime": "25 mins",
+    "equipment": "Pan",
+    "ingredients": [
+      "1 cup coconut milk",
+      "2 tbsp green curry paste (or blend green chili + coriander + garlic + ginger)",
+      "1 cup mixed vegetables (beans, carrot, bell pepper, baby corn)",
+      "100g tofu or paneer, cubed",
+      "1 tbsp oil",
+      "1 tsp sugar",
+      "1 tbsp soy sauce",
+      "Basil or coriander leaves"
+    ],
+    "substitutions": [
+      "No coconut milk? Use cashew paste + milk as a substitute",
+      "No ready green curry paste? Blend green chilies, coriander stems, garlic, ginger, and a little lemongrass/lemon zest"
+    ],
+    "steps": [
+      "Heat oil, saute curry paste for 2 mins until fragrant",
+      "Add half the coconut milk, cook until oil separates slightly",
+      "Add vegetables and tofu/paneer, cook for 5 mins",
+      "Add remaining coconut milk, soy sauce, and sugar",
+      "Simmer for 8-10 mins until vegetables are tender",
+      "Garnish with basil/coriander and serve with rice"
+    ],
+    "tips": "Cooking the curry paste in oil first (not directly in liquid) brings out much stronger flavor."
+  },
+  {
+    "name": "Thai Basil Chicken (Pad Krapow Gai)",
+    "cuisine": "Thai",
+    "diet": "Non-Vegetarian",
+    "servings": 1,
+    "prepTime": "15 mins",
+    "equipment": "Pan",
+    "ingredients": [
+      "200g minced chicken",
+      "3-4 cloves garlic, chopped",
+      "2-3 green chilies, chopped",
+      "1 tbsp soy sauce",
+      "1 tsp oyster sauce (optional)",
+      "1 tsp sugar",
+      "Handful of basil leaves",
+      "1 tbsp oil",
+      "1 fried egg (optional topping)"
+    ],
+    "substitutions": [
+      "No oyster sauce? Skip it, add 1/2 tsp extra soy sauce",
+      "No basil? Use mint + coriander mix as closest substitute",
+      "Chicken can be replaced with soy chunks/paneer for veg version"
+    ],
+    "steps": [
+      "Heat oil, fry garlic and chilies until fragrant",
+      "Add minced chicken, cook on high flame until browned",
+      "Add soy sauce, oyster sauce, and sugar, mix well",
+      "Cook until chicken is fully done, about 5-6 mins",
+      "Turn off flame, toss in basil leaves till wilted",
+      "Serve over rice, topped with a fried egg"
+    ],
+    "tips": "Keep flame high throughout - this dish is meant to be cooked fast and hot, not simmered."
+  },
+  {
+    "name": "Massaman Curry with Chicken and Potatoes",
+    "cuisine": "Thai",
+    "diet": "Non-Vegetarian",
+    "servings": 2,
+    "prepTime": "35 mins",
+    "equipment": "Pot",
+    "ingredients": [
+      "250g chicken, cut into pieces",
+      "2 medium potatoes, cubed",
+      "1 cup coconut milk",
+      "2 tbsp massaman curry paste (or blend dry red chili + cumin + cinnamon + cardamom + garlic)",
+      "1 tbsp peanuts, crushed",
+      "1 tbsp tamarind paste",
+      "1 tsp sugar",
+      "1 onion, sliced"
+    ],
+    "substitutions": [
+      "No massaman paste? Use a mix of garam masala + a few dry red chilies + cinnamon as a rough substitute",
+      "No tamarind? Use lemon juice"
+    ],
+    "steps": [
+      "Heat a little coconut milk (thick part) and fry curry paste for 2 mins",
+      "Add chicken, cook until it changes color",
+      "Add potatoes, onion, and remaining coconut milk",
+      "Add tamarind paste and sugar, mix well",
+      "Cover and simmer for 20 mins until chicken and potatoes are tender",
+      "Garnish with crushed peanuts before serving"
+    ],
+    "tips": "This curry tastes even better the next day - great for hostel meal prep."
+  },
+  {
+    "name": "Thai Fried Rice (Khao Pad)",
+    "cuisine": "Thai",
+    "diet": "Vegetarian",
+    "servings": 1,
+    "prepTime": "15 mins",
+    "equipment": "Pan",
+    "ingredients": [
+      "1.5 cups cooked rice (day-old is best)",
+      "1/2 cup mixed vegetables, diced",
+      "1 egg",
+      "2 tbsp soy sauce",
+      "1 clove garlic, chopped",
+      "1 tbsp oil",
+      "Spring onion, lime wedge"
+    ],
+    "substitutions": [
+      "No day-old rice? Cook fresh rice and spread it out to cool/dry for 10 mins before frying",
+      "Egg can be skipped for vegan version"
+    ],
+    "steps": [
+      "Heat oil, saute garlic until golden",
+      "Push to a side, crack egg in pan and scramble",
+      "Add vegetables, stir-fry for 2 mins",
+      "Add rice and soy sauce, mix well breaking any lumps",
+      "Stir-fry on high heat for 3-4 mins until slightly crisp",
+      "Garnish with spring onion and a squeeze of lime"
+    ],
+    "tips": "Day-old refrigerated rice fries much better than fresh rice - fresh rice turns mushy."
+  },
+  {
+    "name": "Black Glutinous Rice Pudding with Coconut",
+    "cuisine": "Thai",
+    "diet": "Vegetarian",
+    "servings": 2,
+    "prepTime": "40 mins (mostly soaking + boiling)",
+    "equipment": "Pot",
+    "ingredients": [
+      "1/2 cup black glutinous rice (soaked overnight)",
+      "2 cups water",
+      "1/2 cup coconut milk",
+      "3 tbsp sugar or jaggery",
+      "Pinch of salt"
+    ],
+    "substitutions": [
+      "No black glutinous rice? Use regular black rice or even broken rice with longer cook time",
+      "No coconut milk? Use regular milk with 1 tsp desiccated coconut"
+    ],
+    "steps": [
+      "Drain soaked rice, boil in 2 cups water until soft (25-30 mins)",
+      "Add sugar/jaggery and a pinch of salt, mix well",
+      "In a separate small pan, warm the coconut milk (do not boil)",
+      "Serve rice pudding warm in a bowl, topped with warm coconut milk"
+    ],
+    "tips": "This is a great make-ahead dessert - stores well in the fridge for 2 days."
+  },
+  {
+    "name": "Thai Papaya Salad (Som Tam)",
+    "cuisine": "Thai",
+    "diet": "Vegetarian",
+    "servings": 1,
+    "prepTime": "15 mins",
+    "equipment": "Bowl / Mortar-pestle (or just a bowl and spoon)",
+    "ingredients": [
+      "1 cup raw papaya, grated (or grated raw mango/cucumber as substitute)",
+      "1 tomato, sliced",
+      "1 tbsp crushed peanuts",
+      "2 tbsp lemon juice",
+      "1 tbsp soy sauce",
+      "1 tsp sugar",
+      "1-2 green chilies, chopped"
+    ],
+    "substitutions": [
+      "No raw papaya? Grated raw mango or cucumber works as a fresh substitute",
+      "Traditional fish sauce replaced here with soy sauce for veg version"
+    ],
+    "steps": [
+      "In a bowl, mix lemon juice, soy sauce, sugar, and chilies to make dressing",
+      "Add grated papaya and tomato, toss well",
+      "Let it sit for 5 mins so flavors combine",
+      "Top with crushed peanuts before serving"
+    ],
+    "tips": "No cooking required - perfect quick, no-equipment hostel recipe."
+  },
+  {
+    "name": "Veg Hakka Noodles",
+    "cuisine": "Chinese",
+    "diet": "Vegetarian",
+    "servings": 1,
+    "prepTime": "20 mins",
+    "equipment": "Pan",
+    "ingredients": [
+      "150g noodles",
+      "1 cup mixed vegetables (cabbage, carrot, capsicum), julienned",
+      "2 tbsp soy sauce",
+      "1 tbsp vinegar",
+      "1 tsp chili sauce",
+      "2 cloves garlic, chopped",
+      "1 tbsp oil",
+      "Spring onion for garnish"
+    ],
+    "substitutions": [
+      "No specific vegetables? Use whatever is on hand - onion, beans, peas all work",
+      "No chili sauce? Use red chili flakes"
+    ],
+    "steps": [
+      "Boil noodles until just cooked (al dente), drain and toss with a little oil to prevent sticking",
+      "Heat oil in pan, saute garlic for 30 secs",
+      "Add vegetables, stir-fry on high flame for 3-4 mins",
+      "Add noodles, soy sauce, vinegar, and chili sauce",
+      "Toss everything on high flame for 2-3 mins",
+      "Garnish with spring onion and serve hot"
+    ],
+    "tips": "Undercook the noodles slightly before stir-frying, since they'll cook further in the pan."
+  },
+  {
+    "name": "Chilli Paneer",
+    "cuisine": "Indo-Chinese",
+    "diet": "Vegetarian",
+    "servings": 1,
+    "prepTime": "25 mins",
+    "equipment": "Pan",
+    "ingredients": [
+      "200g paneer, cubed",
+      "2 tbsp cornflour",
+      "1 onion, cubed",
+      "1 capsicum, cubed",
+      "3 cloves garlic, chopped",
+      "1 inch ginger, chopped",
+      "2 tbsp soy sauce",
+      "1 tbsp chili sauce",
+      "1 tsp vinegar",
+      "2 tbsp oil"
+    ],
+    "substitutions": [
+      "No cornflour? Use rice flour or all-purpose flour",
+      "Paneer can be replaced with tofu or chicken for other variants"
+    ],
+    "steps": [
+      "Coat paneer cubes with cornflour and shallow fry until golden, set aside",
+      "In the same pan, saute garlic and ginger till fragrant",
+      "Add onion and capsicum, stir-fry on high for 2 mins (keep slightly crunchy)",
+      "Add soy sauce, chili sauce, and vinegar",
+      "Add fried paneer back in, toss to coat evenly",
+      "Cook for 2 more mins and serve hot"
+    ],
+    "tips": "Don't overcook the capsicum/onion - restaurant-style chilli paneer keeps them crunchy, not soft."
+  },
+  {
+    "name": "Egg Fried Rice",
+    "cuisine": "Chinese",
+    "diet": "Eggetarian",
+    "servings": 1,
+    "prepTime": "15 mins",
+    "equipment": "Pan",
+    "ingredients": [
+      "1.5 cups cooked rice (cold/day-old)",
+      "2 eggs",
+      "1/2 cup mixed vegetables, diced",
+      "2 tbsp soy sauce",
+      "1 clove garlic, chopped",
+      "1 tbsp oil",
+      "Spring onion for garnish"
+    ],
+    "substitutions": [
+      "No day-old rice? Spread freshly cooked rice on a plate to cool and dry for 10-15 mins first"
+    ],
+    "steps": [
+      "Heat oil, saute garlic",
+      "Scramble eggs in the pan, set aside a portion for garnish",
+      "Add vegetables, stir fry for 2 mins",
+      "Add rice and soy sauce, mix well",
+      "Add scrambled egg back in, toss on high heat for 2-3 mins",
+      "Garnish with spring onion"
+    ],
+    "tips": "Great way to use leftover rice - a hostel staple that takes under 15 minutes."
+  },
+  {
+    "name": "Chicken Manchurian",
+    "cuisine": "Indo-Chinese",
+    "diet": "Non-Vegetarian",
+    "servings": 2,
+    "prepTime": "30 mins",
+    "equipment": "Pan",
+    "ingredients": [
+      "250g boneless chicken, cubed",
+      "2 tbsp cornflour",
+      "1 egg",
+      "3 cloves garlic, chopped",
+      "1 inch ginger, chopped",
+      "1 onion, chopped",
+      "2 tbsp soy sauce",
+      "1 tbsp chili sauce",
+      "1 tbsp tomato ketchup",
+      "1 tsp cornflour + 1/4 cup water (slurry for gravy)",
+      "2 tbsp oil"
+    ],
+    "substitutions": [
+      "No egg? Marinate chicken with just cornflour and a little water instead",
+      "For dry version, skip the cornflour slurry step"
+    ],
+    "steps": [
+      "Marinate chicken with cornflour, egg, salt, and pepper for 10 mins",
+      "Shallow fry chicken pieces until golden and cooked through, set aside",
+      "In same pan, saute garlic, ginger, and onion till fragrant",
+      "Add soy sauce, chili sauce, and ketchup",
+      "Add a little water and the cornflour slurry, stir until it thickens into a light gravy",
+      "Add fried chicken back in, toss to coat well",
+      "Garnish with spring onion and serve"
+    ],
+    "tips": "For 'dry' Manchurian (party-starter style), skip the slurry and just toss chicken in the sauce directly."
+  },
+  {
+    "name": "Vegetable Manchow Soup",
+    "cuisine": "Indo-Chinese",
+    "diet": "Vegetarian",
+    "servings": 1,
+    "prepTime": "20 mins",
+    "equipment": "Pot",
+    "ingredients": [
+      "2 cups vegetable stock or water",
+      "1/2 cup finely chopped mixed vegetables (carrot, beans, cabbage)",
+      "2 cloves garlic, chopped",
+      "2 tbsp soy sauce",
+      "1 tsp chili sauce",
+      "1 tbsp cornflour + 3 tbsp water (slurry)",
+      "1 tbsp oil",
+      "Fried noodles for topping (optional)"
+    ],
+    "substitutions": [
+      "No fried noodle topping available? Skip it, soup tastes fine without"
+    ],
+    "steps": [
+      "Heat oil, saute garlic until fragrant",
+      "Add vegetables, stir fry for 2 mins",
+      "Add stock/water, soy sauce, and chili sauce, bring to a boil",
+      "Add cornflour slurry slowly while stirring, until soup thickens slightly",
+      "Simmer for 5 mins and serve hot, topped with crispy noodles if available"
+    ],
+    "tips": "Chop vegetables very fine - this soup is meant to have small bits, not chunky pieces."
+  },
+  {
+    "name": "Schezwan Fried Rice",
+    "cuisine": "Indo-Chinese",
+    "diet": "Vegetarian",
+    "servings": 1,
+    "prepTime": "20 mins",
+    "equipment": "Pan",
+    "ingredients": [
+      "1.5 cups cooked rice (cold)",
+      "2 tbsp schezwan sauce (or 2 tbsp chili sauce + extra garlic for a rough substitute)",
+      "1/2 cup mixed vegetables, diced",
+      "2 cloves garlic, chopped",
+      "1 tbsp soy sauce",
+      "1 tbsp oil",
+      "Spring onion for garnish"
+    ],
+    "substitutions": [
+      "No schezwan sauce? Blend dry red chilies + garlic + a little vinegar and soy sauce as a substitute"
+    ],
+    "steps": [
+      "Heat oil, saute garlic until golden",
+      "Add vegetables, stir-fry for 2-3 mins on high flame",
+      "Add rice, schezwan sauce, and soy sauce",
+      "Toss everything well on high heat for 3-4 mins",
+      "Garnish with spring onion and serve hot"
+    ],
+    "tips": "This is spicier than regular fried rice - adjust sauce quantity to taste."
+  },
+  {
+    "name": "Chicken Hakka Noodles",
+    "cuisine": "Chinese",
+    "diet": "Non-Vegetarian",
+    "servings": 1,
+    "prepTime": "25 mins",
+    "equipment": "Pan",
+    "ingredients": [
+      "150g noodles",
+      "150g boneless chicken, thin sliced",
+      "1 cup mixed vegetables, julienned",
+      "2 tbsp soy sauce",
+      "1 tbsp vinegar",
+      "1 tsp chili sauce",
+      "2 cloves garlic, chopped",
+      "1 tbsp oil"
+    ],
+    "substitutions": [
+      "Chicken can be replaced with egg or extra vegetables for other diet types"
+    ],
+    "steps": [
+      "Boil noodles until al dente, drain and set aside with a little oil tossed in",
+      "Heat oil, cook chicken slices until done, set aside",
+      "In same pan, saute garlic, add vegetables, stir-fry for 2-3 mins",
+      "Add noodles, chicken, soy sauce, vinegar, and chili sauce",
+      "Toss everything on high flame for 2-3 mins and serve"
+    ],
+    "tips": "Cut chicken thin and uniform so it cooks fast and evenly on high heat."
+  },
+  {
+    "name": "Veg Spring Rolls (Pan-fried, no deep fry)",
+    "cuisine": "Chinese",
+    "diet": "Vegetarian",
+    "servings": 2,
+    "prepTime": "30 mins",
+    "equipment": "Pan",
+    "ingredients": [
+      "6-8 spring roll wrappers (or thin chapati/roti cut into rectangles as substitute)",
+      "1 cup finely shredded cabbage, carrot",
+      "2 tbsp soy sauce",
+      "1 clove garlic, chopped",
+      "1 tbsp oil + extra for pan-frying",
+      "1 tbsp cornflour + water (for sealing)"
+    ],
+    "substitutions": [
+      "No spring roll wrappers available in hostel? Use thin roti/chapati strips as wrap"
+    ],
+    "steps": [
+      "Heat oil, saute garlic, add shredded vegetables and soy sauce, stir-fry for 3 mins, let cool",
+      "Place filling on wrapper, roll tightly, seal edge with cornflour-water paste",
+      "Heat a little oil in pan, shallow fry rolls on medium flame until golden on all sides",
+      "Serve with extra chili sauce or ketchup"
+    ],
+    "tips": "Pan-frying instead of deep-frying works well in hostel rooms without needing a fryer."
+  },
+  {
+    "name": "Teriyaki Chicken",
+    "cuisine": "Japanese",
+    "diet": "Non-Vegetarian",
+    "servings": 1,
+    "prepTime": "20 mins",
+    "equipment": "Pan",
+    "ingredients": [
+      "200g boneless chicken thigh/breast",
+      "2 tbsp soy sauce",
+      "1 tbsp sugar/honey",
+      "1 tsp vinegar or rice vinegar",
+      "1 clove garlic, minced",
+      "1 tsp oil",
+      "Sesame seeds for garnish (optional)"
+    ],
+    "substitutions": [
+      "No rice vinegar? Use regular vinegar or lemon juice",
+      "Honey can replace sugar for a glossier glaze"
+    ],
+    "steps": [
+      "Mix soy sauce, sugar, vinegar, and garlic to make teriyaki sauce",
+      "Heat oil in pan, cook chicken on medium flame until browned on both sides and cooked through",
+      "Pour teriyaki sauce over chicken, let it simmer and thicken for 3-4 mins, coating the chicken",
+      "Garnish with sesame seeds, serve with rice"
+    ],
+    "tips": "Let the sauce reduce and get sticky/glossy on the chicken - don't rush this step for the authentic glaze."
+  },
+  {
+    "name": "Vegetable Fried Rice (Yaki Meshi style)",
+    "cuisine": "Japanese",
+    "diet": "Vegetarian",
+    "servings": 1,
+    "prepTime": "15 mins",
+    "equipment": "Pan",
+    "ingredients": [
+      "1.5 cups cooked rice (cold)",
+      "1/2 cup mixed vegetables, diced",
+      "1 egg",
+      "1 tbsp soy sauce",
+      "1 tsp sesame oil (or regular oil)",
+      "Spring onion for garnish"
+    ],
+    "substitutions": [
+      "No sesame oil? Regular cooking oil works, flavor will be slightly different but fine"
+    ],
+    "steps": [
+      "Heat oil, scramble egg, set aside",
+      "Add vegetables, stir-fry for 2-3 mins",
+      "Add rice and soy sauce, mix well",
+      "Add egg back in, toss on high heat for 2 mins",
+      "Garnish with spring onion"
+    ],
+    "tips": "A light hand with soy sauce keeps this dish from tasting too similar to Chinese fried rice - it should taste more delicate."
+  },
+  {
+    "name": "Simple Miso-style Ramen (Instant Upgrade)",
+    "cuisine": "Japanese",
+    "diet": "Vegetarian",
+    "servings": 1,
+    "prepTime": "15 mins",
+    "equipment": "Pot",
+    "ingredients": [
+      "1 pack instant noodles (discard flavor packet or use half)",
+      "1 tbsp miso paste (or 1 tbsp soy sauce + 1 tsp peanut butter as substitute)",
+      "1 boiled egg",
+      "1/2 cup vegetables (spinach, mushroom, spring onion)",
+      "1.5 cups water",
+      "1 tsp oil"
+    ],
+    "substitutions": [
+      "No miso paste? Mix 1 tbsp soy sauce with 1 tsp peanut butter or tahini for a similar umami-rich base"
+    ],
+    "steps": [
+      "Boil water, add noodles and vegetables, cook for 3 mins",
+      "Lower heat, stir in miso paste (or substitute) until dissolved",
+      "Add a tsp of oil for richness",
+      "Top with sliced boiled egg and serve hot"
+    ],
+    "tips": "This is a great budget upgrade to instant noodles using items already in most hostel rooms."
+  },
+  {
+    "name": "Onigiri (Rice Balls)",
+    "cuisine": "Japanese",
+    "diet": "Vegetarian",
+    "servings": 2,
+    "prepTime": "15 mins",
+    "equipment": "None (hands only)",
+    "ingredients": [
+      "2 cups cooked short-grain/sticky rice, warm",
+      "1 tsp salt",
+      "2 tbsp filling of choice (e.g. sauteed vegetables, paneer bhurji, or pickle)",
+      "Nori/seaweed sheet, cut into strips (optional)"
+    ],
+    "substitutions": [
+      "No nori? Skip it, onigiri still works without the wrap",
+      "Filling can be anything savory - even leftover sabzi works"
+    ],
+    "steps": [
+      "Wet hands slightly and rub a pinch of salt on palms",
+      "Take a handful of warm rice, flatten slightly and place filling in the center",
+      "Shape into a triangle or ball, pressing firmly so it holds together",
+      "Wrap a strip of nori around the base if available",
+      "Repeat with remaining rice"
+    ],
+    "tips": "No equipment needed at all - perfect for hostel rooms with no stove access, using just leftover rice."
+  },
+  {
+    "name": "Japanese Curry with Vegetables",
+    "cuisine": "Japanese",
+    "diet": "Vegetarian",
+    "servings": 2,
+    "prepTime": "30 mins",
+    "equipment": "Pot",
+    "ingredients": [
+      "1 potato, cubed",
+      "1 carrot, cubed",
+      "1 onion, sliced",
+      "2 tbsp flour",
+      "1 tbsp curry powder (or garam masala + turmeric as substitute)",
+      "1.5 cups water",
+      "1 tbsp oil",
+      "1 tsp soy sauce"
+    ],
+    "substitutions": [
+      "No Japanese curry powder? Mix garam masala, turmeric, and a pinch of cumin"
+    ],
+    "steps": [
+      "Heat oil, saute onion until soft",
+      "Add potato and carrot, cook for 3-4 mins",
+      "Add flour and curry powder, mix to coat vegetables",
+      "Add water gradually, stirring to avoid lumps",
+      "Simmer covered for 15-18 mins until vegetables are soft and gravy thickens",
+      "Add soy sauce, mix, and serve with rice"
+    ],
+    "tips": "The flour is what gives Japanese curry its thick, stew-like texture compared to Indian curries."
+  },
+  {
+    "name": "Kimchi-style Fried Rice (Quick Version)",
+    "cuisine": "Korean",
+    "diet": "Vegetarian",
+    "servings": 1,
+    "prepTime": "20 mins",
+    "equipment": "Pan",
+    "ingredients": [
+      "1.5 cups cooked rice (cold)",
+      "1/2 cup finely chopped cabbage",
+      "1 tbsp chili flakes (gochugaru substitute)",
+      "1 tbsp vinegar",
+      "1 tsp sugar",
+      "1 tbsp soy sauce",
+      "1 egg (for topping)",
+      "1 tbsp oil"
+    ],
+    "substitutions": [
+      "No real kimchi available? This quick pickled-cabbage-flavor version mimics the taste using pantry staples",
+      "Gochugaru (Korean chili flakes) can be substituted with regular red chili flakes + a pinch of paprika"
+    ],
+    "steps": [
+      "Toss chopped cabbage with vinegar, sugar, and chili flakes, let sit 10 mins",
+      "Heat oil in pan, add the quick-pickled cabbage, stir fry for 2 mins",
+      "Add rice and soy sauce, mix well and fry for 3-4 mins",
+      "Fry an egg separately, sunny-side up",
+      "Top rice with the fried egg and serve"
+    ],
+    "tips": "For a closer authentic taste, use real kimchi if available at any Korean/Asian grocery store instead of the quick substitute."
+  },
+  {
+    "name": "Bibimbap-style Rice Bowl",
+    "cuisine": "Korean",
+    "diet": "Vegetarian",
+    "servings": 1,
+    "prepTime": "25 mins",
+    "equipment": "Pan",
+    "ingredients": [
+      "1.5 cups cooked rice",
+      "1/2 cup carrot, julienned and sauteed",
+      "1/2 cup spinach, blanched",
+      "1/2 cup mushroom, sauteed",
+      "1 egg, fried sunny-side up",
+      "1 tbsp chili paste (gochujang substitute: mix chili flakes + soy sauce + a little sugar)",
+      "1 tsp sesame oil (or regular oil)"
+    ],
+    "substitutions": [
+      "No gochujang? Mix 1 tbsp chili sauce/ketchup + 1 tsp soy sauce + pinch of sugar as a substitute"
+    ],
+    "steps": [
+      "Saute each vegetable separately with a little oil and salt, keep them separate",
+      "Place warm rice in a bowl",
+      "Arrange each sauteed vegetable in sections around the rice",
+      "Top with fried egg in the center",
+      "Add a spoon of chili paste substitute on top, drizzle sesame oil, mix everything before eating"
+    ],
+    "tips": "Keeping vegetables separate while cooking (not mixed) is what gives bibimbap its signature look and layered flavor."
+  },
+  {
+    "name": "Korean-style Spicy Chicken Stir-fry",
+    "cuisine": "Korean",
+    "diet": "Non-Vegetarian",
+    "servings": 1,
+    "prepTime": "25 mins",
+    "equipment": "Pan",
+    "ingredients": [
+      "200g boneless chicken, sliced",
+      "1 tbsp chili paste (gochujang substitute: chili flakes + ketchup + soy sauce)",
+      "1 tbsp soy sauce",
+      "1 tsp sugar",
+      "2 cloves garlic, minced",
+      "1 tbsp oil",
+      "Spring onion and sesame seeds for garnish"
+    ],
+    "substitutions": [
+      "No gochujang? Mix 1 tbsp ketchup + 1 tsp chili flakes + 1 tsp soy sauce as substitute"
+    ],
+    "steps": [
+      "Mix chili paste substitute, soy sauce, sugar, and garlic in a bowl - this is the marinade/sauce",
+      "Heat oil, cook chicken on medium-high until browned and nearly cooked, about 5-6 mins",
+      "Pour sauce mix over chicken, toss to coat evenly",
+      "Cook for 3-4 more mins until sauce thickens and coats the chicken",
+      "Garnish with spring onion and sesame seeds, serve with rice"
+    ],
+    "tips": "This dish is spicy by default - reduce chili paste quantity for a milder version."
+  },
+  {
+    "name": "Korean Cucumber Salad (Oi Muchim)",
+    "cuisine": "Korean",
+    "diet": "Vegetarian",
+    "servings": 1,
+    "prepTime": "10 mins",
+    "equipment": "None (bowl only)",
+    "ingredients": [
+      "1 cucumber, thinly sliced",
+      "1 tsp chili flakes",
+      "1 tsp vinegar",
+      "1 tsp sesame oil (or regular oil)",
+      "1 clove garlic, minced",
+      "1/2 tsp sugar",
+      "Salt to taste"
+    ],
+    "substitutions": [
+      "No sesame oil? Regular oil with a pinch of roasted sesame seeds if available"
+    ],
+    "steps": [
+      "Sprinkle salt on cucumber slices, let sit for 5 mins, then squeeze out excess water",
+      "Mix chili flakes, vinegar, sesame oil, garlic, and sugar in a bowl",
+      "Toss cucumber slices in the dressing",
+      "Serve immediately as a side dish"
+    ],
+    "tips": "No cooking needed - great quick side dish for hostel rooms without a stove."
+  },
+  {
+    "name": "Korean Ramen Upgrade (Budae-jjigae style)",
+    "cuisine": "Korean",
+    "diet": "Non-Vegetarian",
+    "servings": 1,
+    "prepTime": "20 mins",
+    "equipment": "Pot",
+    "ingredients": [
+      "1 pack instant noodles",
+      "2 sausages or leftover cooked chicken, sliced",
+      "1/2 cup cabbage, chopped",
+      "1 tbsp chili paste (ketchup + chili flakes substitute)",
+      "1 tsp soy sauce",
+      "1 egg",
+      "1.5 cups water"
+    ],
+    "substitutions": [
+      "No sausages? Use any leftover cooked meat or paneer for veg version"
+    ],
+    "steps": [
+      "Boil water in a pot, add chili paste and soy sauce, mix well",
+      "Add sausages/chicken and cabbage, boil for 5 mins",
+      "Add noodles and its seasoning packet (half quantity), cook for 3 mins",
+      "Crack an egg into the pot, let it poach for 1-2 mins",
+      "Serve hot directly from the pot"
+    ],
+    "tips": "This 'army stew' style dish was originally invented from combining random available ingredients - perfect philosophy for hostel cooking."
+  },
+  {
+    "name": "Vietnamese Pho-style Noodle Soup (Quick Veg Version)",
+    "cuisine": "Vietnamese",
+    "diet": "Vegetarian",
+    "servings": 1,
+    "prepTime": "20 mins",
+    "equipment": "Pot",
+    "ingredients": [
+      "150g rice noodles",
+      "2 cups vegetable stock or water",
+      "1 inch ginger, sliced",
+      "1 star anise (optional)",
+      "1/2 cup mushrooms/spinach",
+      "1 tbsp soy sauce",
+      "Lime, coriander, bean sprouts for garnish"
+    ],
+    "substitutions": [
+      "No star anise? Skip it, use a pinch of cinnamon powder for a similar warm note"
+    ],
+    "steps": [
+      "Boil rice noodles separately according to pack instructions, drain",
+      "In another pot, boil stock/water with ginger and star anise for 5 mins",
+      "Add mushrooms/spinach and soy sauce, simmer for 5 mins",
+      "Pour hot broth over noodles in a bowl",
+      "Garnish with lime, coriander, and bean sprouts if available"
+    ],
+    "tips": "Simmering the broth with ginger and spices even for just 10 minutes makes a big difference vs. plain water."
+  },
+  {
+    "name": "Vietnamese Spring Rolls (Fresh, No-Cook)",
+    "cuisine": "Vietnamese",
+    "diet": "Vegetarian",
+    "servings": 2,
+    "prepTime": "20 mins",
+    "equipment": "None (assembly only)",
+    "ingredients": [
+      "6 rice paper sheets",
+      "1 carrot, julienned",
+      "1 cucumber, julienned",
+      "Handful of lettuce/spinach leaves",
+      "Handful of mint/coriander leaves",
+      "2 tbsp peanut butter + 1 tbsp soy sauce + water (dipping sauce)"
+    ],
+    "substitutions": [
+      "No rice paper? Use thin lettuce leaves as a wrap instead",
+      "No peanut butter for sauce? Use a mix of ketchup and chili sauce"
+    ],
+    "steps": [
+      "Dip rice paper sheet in warm water for 5-10 secs until soft",
+      "Lay it flat, place vegetables and herbs in the center",
+      "Fold sides in and roll tightly like a wrap",
+      "Repeat with remaining sheets",
+      "Mix peanut butter, soy sauce, and a little water for dipping sauce",
+      "Serve fresh rolls with the dipping sauce"
+    ],
+    "tips": "Zero cooking required - ideal for hostel rooms with no cooking equipment at all."
+  },
+  {
+    "name": "Vietnamese Lemongrass Chicken Stir-fry",
+    "cuisine": "Vietnamese",
+    "diet": "Non-Vegetarian",
+    "servings": 1,
+    "prepTime": "20 mins",
+    "equipment": "Pan",
+    "ingredients": [
+      "200g boneless chicken, sliced",
+      "1 stalk lemongrass, finely chopped (or 1 tsp lemon zest as substitute)",
+      "2 cloves garlic, chopped",
+      "1 tbsp soy sauce",
+      "1 tsp sugar",
+      "1 tbsp oil",
+      "Chili and coriander for garnish"
+    ],
+    "substitutions": [
+      "No lemongrass available? Use lemon zest + a small piece of ginger for a similar citrusy-fresh note"
+    ],
+    "steps": [
+      "Marinate chicken with lemongrass/lemon zest, garlic, soy sauce, and sugar for 10 mins",
+      "Heat oil in pan, cook marinated chicken on medium-high heat until browned and cooked through",
+      "Garnish with chili and coriander",
+      "Serve with rice"
+    ],
+    "tips": "Marinating even for just 10 minutes makes a noticeable difference in flavor depth."
+  },
+  {
+    "name": "Vietnamese Stir-fried Noodles with Vegetables",
+    "cuisine": "Vietnamese",
+    "diet": "Vegetarian",
+    "servings": 1,
+    "prepTime": "20 mins",
+    "equipment": "Pan",
+    "ingredients": [
+      "150g rice noodles or any noodles",
+      "1 cup mixed vegetables, sliced",
+      "2 cloves garlic, chopped",
+      "2 tbsp soy sauce",
+      "1 tsp sugar",
+      "1 tbsp oil",
+      "Crushed peanuts and lime for garnish"
+    ],
+    "substitutions": [
+      "Any noodles on hand work fine - this dish is flexible with noodle type"
+    ],
+    "steps": [
+      "Soak/boil noodles according to package instructions, drain",
+      "Heat oil, saute garlic until fragrant",
+      "Add vegetables, stir-fry for 3 mins",
+      "Add noodles, soy sauce, and sugar, toss well on high heat for 3-4 mins",
+      "Garnish with crushed peanuts and a squeeze of lime"
+    ],
+    "tips": "Fresh lime juice at the end brightens up the whole dish - don't skip it."
+  }
+]
