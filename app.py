@@ -216,6 +216,7 @@ div[data-baseweb="select"] > div {
 .badge-egg { background: rgba(242,169,59,0.15); color: var(--mango); border: 1px solid rgba(242,169,59,0.4); }
 .badge-cuisine { background: rgba(247,238,227,0.08); color: var(--muted); border: 1px solid var(--border); }
 .badge-online { background: rgba(90,150,220,0.15); color: #7EB3F0; border: 1px solid rgba(90,150,220,0.4); }
+.badge-generated { background: rgba(179,139,217,0.15); color: #C9A0DC; border: 1px solid rgba(179,139,217,0.4); }
 .badge-kb { background: rgba(111,162,135,0.1); color: var(--jade); border: 1px solid rgba(111,162,135,0.3); }
 .dot { width: 7px; height: 7px; border-radius: 50%; display: inline-block; }
 .dot-veg { background: var(--jade); }
@@ -428,6 +429,65 @@ def retrieve_zero_shopping(user_ingredients, diet_pref, cuisine_pref, top_n=3):
     return zero_matches, closest
 
 
+NON_VEG_HINTS = ["chicken", "egg", "fish", "mutton", "prawn", "meat", "beef", "pork", "murgi", "anda", "machli"]
+
+
+def guess_diet(user_ingredients, diet_pref):
+    if diet_pref != "Any":
+        return diet_pref
+    for ing in user_ingredients:
+        low = ing.lower()
+        if "egg" in low or "anda" in low:
+            return "Eggetarian"
+        if any(w in low for w in NON_VEG_HINTS):
+            return "Non-Vegetarian"
+    return "Vegetarian"
+
+
+def generate_basic_recipe(user_ingredients, diet_pref):
+    """Last-resort fallback: when neither the local knowledge base nor an
+    online search has a recipe buildable from exactly what the user has,
+    algorithmically assemble a simple, sensible stir-fry/sabzi-style recipe
+    using ONLY their ingredients plus common pantry staples. Guarantees a
+    zero-extra-shopping result, similar to how a general chatbot would
+    improvise from a short ingredient list."""
+    clean_names = [ing.strip().title() for ing in user_ingredients if ing.strip()]
+    display_names = ", ".join(clean_names[:-1]) + (f" & {clean_names[-1]}" if len(clean_names) > 1 else clean_names[0])
+
+    ingredients = [f"{name} — roughly chopped, as needed" for name in clean_names]
+    ingredients += [
+        "Oil — 1–2 tbsp",
+        "Salt — to taste",
+        "Any spices you have on hand (turmeric, chili powder, cumin, pepper) — a pinch each, optional",
+    ]
+
+    first = clean_names[0] if clean_names else "your ingredients"
+    steps = [
+        f"Wash and roughly chop all your ingredients ({display_names}) into bite-sized pieces.",
+        "Heat oil in a pan over medium flame.",
+        f"Add the firmer/longer-cooking items first (usually {first}), and stir-fry for 2–3 minutes.",
+        "Add the rest of your ingredients along with salt and any spices you have.",
+        "Cover and cook on medium-low heat for 8–10 minutes, stirring occasionally, until everything is tender.",
+        "Taste, adjust salt/spice, and serve hot — with rice or roti if you have it.",
+    ]
+
+    return {
+        "name": f"Quick {display_names} Stir-Fry",
+        "cuisine": "Custom (built for your ingredients)",
+        "diet": guess_diet(user_ingredients, diet_pref),
+        "servings": 2,
+        "prepTime": "20-25 mins",
+        "equipment": "Pan",
+        "ingredients": ingredients,
+        "steps": steps,
+        "substitutions": [],
+        "tips": "This recipe was assembled specifically from what you listed — nothing "
+                "extra to buy. It's a flexible base; any sauce, paste, or herb you have "
+                "can be added to change up the flavor.",
+        "source": "generated",
+    }
+
+
 DIET_BADGE = {
     "Vegetarian": ("badge-veg", "dot-veg", "Vegetarian"),
     "Non-Vegetarian": ("badge-nonveg", "dot-nonveg", "Non-Vegetarian"),
@@ -597,12 +657,13 @@ def render_recipe_card(recipe, servings_override=None, user_ingredients=None):
             f'<div class="sub-box">{subs_items}</div>'
         )
 
-    is_online = recipe.get("source") == "online"
-    source_badge = (
-        '<span class="badge badge-online">🌐 Found Online</span>'
-        if is_online
-        else '<span class="badge badge-kb">📗 Knowledge Base</span>'
-    )
+    source = recipe.get("source", "kb")
+    if source == "online":
+        source_badge = '<span class="badge badge-online">🌐 Found Online</span>'
+    elif source == "generated":
+        source_badge = '<span class="badge badge-generated">🧑‍🍳 Built For You</span>'
+    else:
+        source_badge = '<span class="badge badge-kb">📗 Knowledge Base</span>'
 
     html = (
         '<div class="ticket">'
@@ -750,6 +811,9 @@ if search_clicked:
         st.warning("Enter at least one ingredient to get started.")
     elif zero_shopping:
         # ---- Zero-shopping mode: only recipes fully makeable right now ----
+        # Tier 1: local knowledge base. Tier 2: online search, filtered to
+        # true zero-extra-items matches. Tier 3: algorithmically generate a
+        # simple recipe from exactly what the user has — guarantees a result.
         user_ingredients = [i.strip() for i in ingredients_input.split(",") if i.strip()]
         zero_matches, closest = retrieve_zero_shopping(user_ingredients, diet_pref, cuisine_pref)
 
@@ -763,15 +827,42 @@ if search_clicked:
                 render_recipe_card(r, servings_override, user_ingredients)
                 render_read_aloud_button(r, key_suffix=f"zero-{idx}")
         else:
-            st.warning(
-                "No recipe in the knowledge base can be made with zero shopping from "
-                "just these ingredients. Here are the closest options — each shows "
-                "exactly how many extra items you'd need."
+            st.info(
+                "🔎 Nothing in the knowledge base matches exactly — checking online "
+                "for a recipe you can make with zero extra shopping..."
             )
-            for idx, r in enumerate(closest):
-                r["source"] = "kb"
-                render_recipe_card(r, servings_override, user_ingredients)
-                render_read_aloud_button(r, key_suffix=f"closest-{idx}")
+            with st.spinner("Searching TheMealDB..."):
+                online_meals, _ = search_online_recipes(tuple(user_ingredients), diet_pref)
+
+            online_zero = []
+            if online_meals:
+                normalized = [normalize_online_meal(m, diet_pref) for m in online_meals]
+                online_zero = [
+                    r for r in normalized if missing_ingredient_count(r, user_ingredients) == 0
+                ]
+
+            if online_zero:
+                st.success(
+                    f"🌐 Found {len(online_zero)} online recipe"
+                    f"{'s' if len(online_zero) > 1 else ''} you can make with zero shopping!"
+                )
+                for idx, r in enumerate(online_zero):
+                    render_recipe_card(r, servings_override, user_ingredients)
+                    render_read_aloud_button(r, key_suffix=f"online-zero-{idx}")
+            else:
+                st.info(
+                    "🧑‍🍳 No exact match locally or online — building a simple recipe "
+                    "from exactly what you listed, no shopping required:"
+                )
+                generated = generate_basic_recipe(user_ingredients, diet_pref)
+                render_recipe_card(generated, servings_override, user_ingredients)
+                render_read_aloud_button(generated, key_suffix="generated")
+
+                with st.expander("Curious what else is close? (needs a little shopping)"):
+                    for idx, r in enumerate(closest):
+                        r["source"] = "kb"
+                        render_recipe_card(r, servings_override, user_ingredients)
+                        render_read_aloud_button(r, key_suffix=f"closest-{idx}")
     else:
         user_ingredients = [i.strip() for i in ingredients_input.split(",") if i.strip()]
         results, match_ratio = retrieve_best_recipes(
