@@ -11,6 +11,7 @@ order tickets with diet-type color badges.
 import streamlit as st
 import streamlit.components.v1 as components
 import json
+import requests
 
 # ---------------------------------------------------------------
 # Custom hero illustration (original SVG artwork — no external
@@ -214,6 +215,8 @@ div[data-baseweb="select"] > div {
 .badge-nonveg { background: rgba(232,73,29,0.15); color: var(--chili); border: 1px solid rgba(232,73,29,0.4); }
 .badge-egg { background: rgba(242,169,59,0.15); color: var(--mango); border: 1px solid rgba(242,169,59,0.4); }
 .badge-cuisine { background: rgba(247,238,227,0.08); color: var(--muted); border: 1px solid var(--border); }
+.badge-online { background: rgba(90,150,220,0.15); color: #7EB3F0; border: 1px solid rgba(90,150,220,0.4); }
+.badge-kb { background: rgba(111,162,135,0.1); color: var(--jade); border: 1px solid rgba(111,162,135,0.3); }
 .dot { width: 7px; height: 7px; border-radius: 50%; display: inline-block; }
 .dot-veg { background: var(--jade); }
 .dot-nonveg { background: var(--chili); }
@@ -244,6 +247,23 @@ div[data-baseweb="select"] > div {
     font-size: 0.85rem;
     padding: 5px 12px;
     border-radius: 10px;
+}
+.ing-chip-have {
+    background: rgba(111,162,135,0.14);
+    border: 1px solid rgba(111,162,135,0.45);
+    color: var(--jade);
+    font-weight: 600;
+}
+.ing-chip-staple {
+    background: rgba(242,169,59,0.1);
+    border: 1px solid rgba(242,169,59,0.35);
+    color: var(--mango);
+}
+.coverage-tag {
+    display: block;
+    font-size: 0.78rem;
+    color: var(--muted);
+    margin-bottom: 8px;
 }
 .step-list { list-style: none; padding: 0; margin: 0; counter-reset: step; }
 .step-list li {
@@ -341,6 +361,14 @@ def score_recipe(recipe, user_ingredients, diet_pref, cuisine_pref, equipment_hi
     return score
 
 
+def ingredient_match_count(recipe, user_ingredients):
+    ing_text = " ".join(recipe["ingredients"]).lower()
+    return sum(
+        1 for ing in user_ingredients
+        if ing.strip() and ing.strip().lower() in ing_text
+    )
+
+
 def retrieve_best_recipes(user_ingredients, diet_pref, cuisine_pref, equipment_hint, top_n=3):
     scored = [
         (score_recipe(r, user_ingredients, diet_pref, cuisine_pref, equipment_hint), r)
@@ -348,7 +376,56 @@ def retrieve_best_recipes(user_ingredients, diet_pref, cuisine_pref, equipment_h
     ]
     scored.sort(key=lambda x: x[0], reverse=True)
     results = [r for s, r in scored if s > 0]
-    return results[:top_n] if results else [scored[0][1]]
+    top_recipe = results[0] if results else scored[0][1]
+
+    # Confidence = fraction of the user's ingredients actually present in
+    # the best local match. Coincidental single-ingredient overlaps (e.g.
+    # "onion" or "tomato" showing up in an unrelated dish) shouldn't count
+    # as a genuine match — we want most of what the user has to be covered.
+    matched = ingredient_match_count(top_recipe, user_ingredients)
+    match_ratio = matched / len(user_ingredients) if user_ingredients else 0
+
+    final_results = results[:top_n] if results else [scored[0][1]]
+    return final_results, match_ratio
+
+
+# Items assumed present in almost every kitchen — these should never count
+# as "missing" just because the user didn't explicitly list them.
+PANTRY_STAPLES = [
+    "salt", "oil", "water", "sugar", "black pepper", "pepper", "ghee",
+    "cooking oil", "vegetable oil", "butter", "vinegar",
+]
+
+
+def missing_ingredient_count(recipe, user_ingredients):
+    """How many ingredients in this recipe the user would still need to buy
+    (i.e. not something they listed, and not a common pantry staple)."""
+    normalized_user = [normalize_for_search(u) for u in user_ingredients if u.strip()]
+    missing = 0
+    for ing in recipe["ingredients"]:
+        ing_lower = ing.lower()
+        user_has = any(u in ing_lower for u in normalized_user)
+        is_staple = any(s in ing_lower for s in PANTRY_STAPLES)
+        if not user_has and not is_staple:
+            missing += 1
+    return missing
+
+
+def retrieve_zero_shopping(user_ingredients, diet_pref, cuisine_pref, top_n=3):
+    """Scan the whole knowledge base and rank by fewest missing ingredients,
+    instead of the usual overlap-score retrieval — used when the user
+    explicitly doesn't want to buy anything extra."""
+    candidates = []
+    for r in recipes:
+        if diet_pref != "Any" and r["diet"] != diet_pref:
+            continue
+        if cuisine_pref != "Any" and r["cuisine"] != cuisine_pref:
+            continue
+        candidates.append((missing_ingredient_count(r, user_ingredients), r))
+    candidates.sort(key=lambda x: x[0])
+    zero_matches = [r for m, r in candidates if m == 0]
+    closest = [r for m, r in candidates[:top_n]]
+    return zero_matches, closest
 
 
 DIET_BADGE = {
@@ -358,15 +435,158 @@ DIET_BADGE = {
 }
 
 
-def render_recipe_card(recipe, servings_override=None):
+# Common Hinglish/Hindi ingredient names -> English, since TheMealDB only
+# recognizes English ingredient names (e.g. "aloo" must become "potato").
+HINGLISH_TO_ENGLISH = {
+    "aloo": "potato", "alu": "potato", "pyaz": "onion", "pyaaz": "onion",
+    "tamatar": "tomato", "adrak": "ginger", "lehsun": "garlic", "lasun": "garlic",
+    "hari mirch": "chilli", "mirch": "chilli", "dhaniya": "coriander",
+    "jeera": "cumin", "haldi": "turmeric", "chawal": "rice", "dahi": "yogurt",
+    "atta": "flour", "besan": "gram flour", "gobi": "cauliflower",
+    "bhindi": "okra", "baingan": "eggplant", "matar": "peas", "palak": "spinach",
+    "murgi": "chicken", "murga": "chicken", "anda": "egg", "ande": "egg",
+    "machli": "fish", "doodh": "milk", "makhan": "butter", "shimla mirch": "pepper",
+    "nimbu": "lemon", "chini": "sugar", "namak": "salt", "tel": "oil",
+    "ghee": "ghee", "gud": "jaggery", "kaddu": "pumpkin", "shakarkandi": "sweet potato",
+    "mooli": "radish", "gajar": "carrot", "kheera": "cucumber", "lauki": "bottle gourd",
+    "rajma": "kidney beans", "chana": "chickpeas", "dal": "lentils", "moong": "lentils",
+    "kaju": "cashew", "badam": "almond", "kishmish": "raisin", "til": "sesame",
+    "imli": "tamarind", "elaichi": "cardamom", "dalchini": "cinnamon", "laung": "clove",
+}
+
+
+def normalize_for_search(ingredient):
+    key = ingredient.strip().lower()
+    return HINGLISH_TO_ENGLISH.get(key, key)
+
+
+# ---------------------------------------------------------------
+# Online fallback — when the local knowledge base has no strong
+# ingredient match, search a live recipe database (TheMealDB, free
+# public API, no key required) so the user still gets a usable recipe.
+# Returns (results, debug_reason) — debug_reason explains a failure
+# so it's diagnosable instead of silently swallowed.
+# ---------------------------------------------------------------
+@st.cache_data(show_spinner=False, ttl=3600)
+def search_online_recipes(user_ingredients_tuple, diet_pref):
+    base = "https://www.themealdb.com/api/json/v1/1"
+    user_ingredients = list(user_ingredients_tuple)
+
+    def fetch_details(meals):
+        detailed = []
+        for m in meals[:3]:
+            try:
+                d = requests.get(f"{base}/lookup.php?i={m['idMeal']}", timeout=8)
+                d.raise_for_status()
+                full = (d.json() or {}).get("meals") or []
+                if full:
+                    detailed.append(full[0])
+            except (requests.RequestException, ValueError):
+                continue
+        return detailed
+
+    tried = []
+    try:
+        if diet_pref == "Vegetarian":
+            resp = requests.get(f"{base}/filter.php?c=Vegetarian", timeout=8)
+            resp.raise_for_status()
+            meals = (resp.json() or {}).get("meals") or []
+            tried.append("category=Vegetarian")
+            if meals:
+                return fetch_details(meals), None
+
+        for raw_ing in user_ingredients:
+            ing = normalize_for_search(raw_ing)
+            resp = requests.get(f"{base}/filter.php?i={ing}", timeout=8)
+            resp.raise_for_status()
+            meals = (resp.json() or {}).get("meals") or []
+            tried.append(f"ingredient={ing}")
+            if meals:
+                return fetch_details(meals), None
+
+        if user_ingredients:
+            keyword = normalize_for_search(user_ingredients[0])
+            resp = requests.get(f"{base}/search.php?s={keyword}", timeout=8)
+            resp.raise_for_status()
+            meals = (resp.json() or {}).get("meals") or []
+            tried.append(f"name-search={keyword}")
+            if meals:
+                return meals[:3], None
+
+        return [], f"No results for any of: {', '.join(tried) or 'nothing tried'}"
+    except requests.RequestException as e:
+        return [], f"Network/request error: {type(e).__name__}: {e}"
+    except ValueError as e:
+        return [], f"Response parsing error: {e}"
+
+
+def normalize_online_meal(meal, diet_pref):
+    ingredients = []
+    for i in range(1, 21):
+        ing = (meal.get(f"strIngredient{i}") or "").strip()
+        measure = (meal.get(f"strMeasure{i}") or "").strip()
+        if ing:
+            ingredients.append(f"{measure} {ing}".strip())
+
+    raw_instructions = meal.get("strInstructions") or ""
+    steps = [s.strip() for s in raw_instructions.replace("\r\n", "\n").split("\n") if s.strip()]
+    if not steps:
+        steps = [raw_instructions.strip() or "Instructions unavailable."]
+
+    return {
+        "name": meal.get("strMeal", "Untitled Recipe"),
+        "cuisine": meal.get("strArea", "International"),
+        "diet": diet_pref if diet_pref != "Any" else "Unspecified",
+        "servings": 2,
+        "prepTime": "Varies",
+        "equipment": "Standard kitchen",
+        "ingredients": ingredients,
+        "steps": steps,
+        "substitutions": [],
+        "tips": "Sourced live from TheMealDB — an online recipe database, used when the "
+                "local knowledge base doesn't have a close match for your ingredients.",
+        "source": "online",
+    }
+
+
+
+def render_recipe_card(recipe, servings_override=None, user_ingredients=None):
     servings = servings_override or recipe["servings"]
     diet_class, dot_class, diet_label = DIET_BADGE.get(
         recipe["diet"], ("badge-cuisine", "dot-veg", recipe["diet"])
     )
 
-    ingredients_html = "".join(
-        f'<span class="ing-chip">{ing}</span>' for ing in recipe["ingredients"]
-    )
+    user_ingredients = user_ingredients or []
+    normalized_user = [normalize_for_search(u) for u in user_ingredients if u.strip()]
+
+    have_count = 0
+    staple_count = 0
+    chip_parts = []
+    for ing in recipe["ingredients"]:
+        ing_lower = ing.lower()
+        user_has_it = any(u in ing_lower for u in normalized_user)
+        is_staple = any(s in ing_lower for s in PANTRY_STAPLES)
+
+        if user_has_it:
+            have_count += 1
+            chip_parts.append(f'<span class="ing-chip ing-chip-have">✓ {ing}</span>')
+        elif is_staple:
+            staple_count += 1
+            chip_parts.append(f'<span class="ing-chip ing-chip-staple">🧂 {ing}</span>')
+        else:
+            chip_parts.append(f'<span class="ing-chip">{ing}</span>')
+    ingredients_html = "".join(chip_parts)
+
+    coverage_html = ""
+    if normalized_user:
+        total = len(recipe["ingredients"])
+        to_buy = total - have_count - staple_count
+        coverage_html = (
+            f'<span class="coverage-tag">✓ {have_count} you already have &nbsp;·&nbsp; '
+            f'🧂 {staple_count} common pantry staples &nbsp;·&nbsp; '
+            f'🛒 {to_buy} to buy</span>'
+        )
+
     steps_html = "".join(f"<li>{step}</li>" for step in recipe["steps"])
 
     subs_html = ""
@@ -377,12 +597,20 @@ def render_recipe_card(recipe, servings_override=None):
             f'<div class="sub-box">{subs_items}</div>'
         )
 
+    is_online = recipe.get("source") == "online"
+    source_badge = (
+        '<span class="badge badge-online">🌐 Found Online</span>'
+        if is_online
+        else '<span class="badge badge-kb">📗 Knowledge Base</span>'
+    )
+
     html = (
         '<div class="ticket">'
         f'<div class="ticket-name">{recipe["name"]}</div>'
         '<div class="badge-row">'
         f'<span class="badge {diet_class}"><span class="dot {dot_class}"></span>{diet_label}</span>'
         f'<span class="badge badge-cuisine">{recipe["cuisine"]}</span>'
+        f'{source_badge}'
         '</div>'
         '<div class="meta-row">'
         f'<span class="meta-item">🍽️ Serves {servings}</span>'
@@ -390,6 +618,7 @@ def render_recipe_card(recipe, servings_override=None):
         f'<span class="meta-item">🔧 {recipe["equipment"]}</span>'
         '</div>'
         '<div class="ing-title">Ingredients</div>'
+        f'{coverage_html}'
         f'<div class="ing-chips">{ingredients_html}</div>'
         '<div class="step-title">Steps</div>'
         f'<ul class="step-list">{steps_html}</ul>'
@@ -505,6 +734,10 @@ with col3:
 with col4:
     servings_override = st.number_input("Servings needed", min_value=1, max_value=10, value=1)
 
+zero_shopping = st.checkbox(
+    "🙅 Don't want to buy anything — only show recipes I can fully make right now"
+)
+
 st.markdown("<div style='height:6px'></div>", unsafe_allow_html=True)
 search_clicked = st.button("🔍  Find My Recipe")
 st.markdown('</div>', unsafe_allow_html=True)
@@ -515,19 +748,88 @@ st.markdown('</div>', unsafe_allow_html=True)
 if search_clicked:
     if not ingredients_input.strip():
         st.warning("Enter at least one ingredient to get started.")
+    elif zero_shopping:
+        # ---- Zero-shopping mode: only recipes fully makeable right now ----
+        user_ingredients = [i.strip() for i in ingredients_input.split(",") if i.strip()]
+        zero_matches, closest = retrieve_zero_shopping(user_ingredients, diet_pref, cuisine_pref)
+
+        if zero_matches:
+            st.success(
+                f"🎉 {len(zero_matches)} recipe{'s' if len(zero_matches) > 1 else ''} "
+                f"you can make right now — zero shopping needed!"
+            )
+            for idx, r in enumerate(zero_matches[:3]):
+                r["source"] = "kb"
+                render_recipe_card(r, servings_override, user_ingredients)
+                render_read_aloud_button(r, key_suffix=f"zero-{idx}")
+        else:
+            st.warning(
+                "No recipe in the knowledge base can be made with zero shopping from "
+                "just these ingredients. Here are the closest options — each shows "
+                "exactly how many extra items you'd need."
+            )
+            for idx, r in enumerate(closest):
+                r["source"] = "kb"
+                render_recipe_card(r, servings_override, user_ingredients)
+                render_read_aloud_button(r, key_suffix=f"closest-{idx}")
     else:
         user_ingredients = [i.strip() for i in ingredients_input.split(",") if i.strip()]
-        results = retrieve_best_recipes(
+        results, match_ratio = retrieve_best_recipes(
             user_ingredients, diet_pref, cuisine_pref, equipment_hint, top_n=3
         )
-        st.markdown(
-            f'<div class="section-label" style="margin-bottom:14px;">'
-            f'🍳 {len(results)} recipe{"s" if len(results) > 1 else ""} for you</div>',
-            unsafe_allow_html=True,
-        )
-        for idx, r in enumerate(results):
-            render_recipe_card(r, servings_override)
-            render_read_aloud_button(r, key_suffix=f"{r['name']}-{idx}")
+        for r in results:
+            r["source"] = "kb"
+
+        # Require most (75%+) of the user's ingredients to genuinely appear
+        # in the top local match before trusting the knowledge base alone.
+        match_found = match_ratio >= 0.75
+
+        if match_found:
+            st.markdown(
+                f'<div class="section-label" style="margin-bottom:14px;">'
+                f'🍳 {len(results)} recipe{"s" if len(results) > 1 else ""} for you</div>',
+                unsafe_allow_html=True,
+            )
+            for idx, r in enumerate(results):
+                render_recipe_card(r, servings_override, user_ingredients)
+                render_read_aloud_button(r, key_suffix=f"kb-{idx}")
+        else:
+            st.info(
+                "🔎 These ingredients don't closely match anything in the "
+                "pan-Asian knowledge base — searching online for more options..."
+            )
+            with st.spinner("Searching TheMealDB..."):
+                online_meals, debug_reason = search_online_recipes(
+                    tuple(user_ingredients), diet_pref
+                )
+
+            if online_meals:
+                normalized = [normalize_online_meal(m, diet_pref) for m in online_meals]
+                st.markdown(
+                    f'<div class="section-label" style="margin-bottom:14px;">'
+                    f'🌐 {len(normalized)} recipe{"s" if len(normalized) > 1 else ""} found online</div>',
+                    unsafe_allow_html=True,
+                )
+                for idx, r in enumerate(normalized):
+                    render_recipe_card(r, servings_override, user_ingredients)
+                    render_read_aloud_button(r, key_suffix=f"online-{idx}")
+
+                st.caption(
+                    "💡 Closest match from our curated knowledge base is shown below too."
+                )
+                render_recipe_card(results[0], servings_override, user_ingredients)
+                render_read_aloud_button(results[0], key_suffix="kb-fallback")
+            else:
+                st.warning(
+                    "Couldn't find an online match either. "
+                    "Here's the closest recipe from our knowledge base:"
+                )
+                if debug_reason:
+                    with st.expander("🛠️ Why did online search fail? (debug info)"):
+                        st.code(debug_reason)
+                render_recipe_card(results[0], servings_override, user_ingredients)
+                render_read_aloud_button(results[0], key_suffix="kb-fallback-only")
+
 
 st.markdown(
     '<div class="footer-note">Built with Streamlit • Powered by IBM watsonx '
