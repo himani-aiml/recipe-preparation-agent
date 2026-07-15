@@ -4,7 +4,6 @@
 **Problem Statement No. 16 — Recipe Preparation Agent**
 
 🔗 **Live Demo:** [recipe-preparation-agent.streamlit.app](https://recipe-preparation-agent-5ehuam9lmnoodywtappfhkc.streamlit.app)
-📦 **Repository:** [github.com/himani-aiml/recipe-preparation-agent](https://github.com/himani-aiml/recipe-preparation-agent)
 
 A hybrid **RAG-based AI cooking assistant** that helps students, hostlers, and
 everyday home cooks turn whatever groceries they have on hand into a
